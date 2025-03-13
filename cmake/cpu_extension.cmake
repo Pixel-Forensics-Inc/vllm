@@ -136,7 +136,7 @@ endif()
 #
 # Build oneDNN for W8A8 GEMM kernels (only for x86-AVX512 platforms)
 #
-if (AVX512_FOUND AND NOT AVX512_DISABLED)
+if (AVX2_FOUND OR (AVX512_FOUND AND NOT AVX512_DISABLED))
     FetchContent_Declare(
         oneDNN
         GIT_REPOSITORY https://github.com/oneapi-src/oneDNN.git
@@ -184,7 +184,7 @@ set(VLLM_EXT_SRC
     "csrc/cpu/pos_encoding.cpp"
     "csrc/cpu/torch_bindings.cpp")
 
-if (AVX512_FOUND AND NOT AVX512_DISABLED)
+if (AVX2_FOUND OR (AVX512_FOUND AND NOT AVX512_DISABLED))
     set(VLLM_EXT_SRC
         "csrc/cpu/quant.cpp"
         ${VLLM_EXT_SRC})
