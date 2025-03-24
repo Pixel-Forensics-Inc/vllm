@@ -187,7 +187,7 @@ class Idefics3ProcessingInfo(BaseProcessingInfo):
         size: Optional[dict[str, object]] = None,
         do_image_splitting: Optional[bool] = None,
     ) -> tuple[int, int]:
-        hf_processor = self.get_hf_processor(size=size)
+        hf_processor = self.get_hf_processor(size=size, do_image_splitting=do_image_splitting)
         image_processor: Idefics3ImageProcessor = hf_processor.image_processor
         max_image_size = image_processor.max_image_size['longest_edge']
         size = image_processor.size['longest_edge']
