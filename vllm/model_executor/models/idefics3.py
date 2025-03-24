@@ -85,10 +85,13 @@ class Idefics3ProcessingInfo(BaseProcessingInfo):
         self,
         *,
         size: Optional[Dict[str, int]] = None,
+        do_image_splitting: Optional[bool] = None,
         **kwargs: object,
     ) -> Idefics3Processor:
         if size is not None:
             kwargs["size"] = size
+        if do_image_splitting is not None:
+            kwargs["do_image_splitting"] = do_image_splitting
 
         return self.ctx.get_hf_processor(Idefics3Processor, **kwargs)
 
@@ -182,6 +185,7 @@ class Idefics3ProcessingInfo(BaseProcessingInfo):
         image_width: int,
         image_height: int,
         size: Optional[dict[str, object]] = None,
+        do_image_splitting: Optional[bool] = None,
     ) -> tuple[int, int]:
         hf_processor = self.get_hf_processor(size=size)
         image_processor: Idefics3ImageProcessor = hf_processor.image_processor
