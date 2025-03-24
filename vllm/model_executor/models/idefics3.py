@@ -91,7 +91,7 @@ class Idefics3ProcessingInfo(BaseProcessingInfo):
         if size is not None:
             kwargs["size"] = size
         if do_image_splitting is not None:
-            kwargs["images_kwargs"]["do_image_splitting"] = do_image_splitting
+            kwargs["images_kwargs"] = {"do_image_splitting": do_image_splitting}
 
         return self.ctx.get_hf_processor(Idefics3Processor, **kwargs)
 
